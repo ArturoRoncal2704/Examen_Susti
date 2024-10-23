@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Estudiantes</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Lista de Estudiantes</h2>
+
+      
+        <div th:if="${error}" class="alert alert-danger" role="alert">
+            <span th:text="${error}"></span>
+        </div>
+        
+        <a th:href="@{/registrar_estudiante}" class="btn btn-primary mb-3">Registrar</a>
+
+        <form action="#" th:action="@{/buscar_estudiante}" method="get" class="mb-3">
+            <div class="input-group">
+                <input type="text" name="id" class="form-control" placeholder="Ingrese DNI o ID" required>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>DNI</th>
+                    <th>Código Alumno</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="estudiante : ${listaest}">
+                    <td th:text="${estudiante.dni}"></td>
+                    <td th:text="${estudiante.codAlumno}"></td>
+                    <td th:text="${estudiante.nombres}"></td> 
+                    <td th:text="${estudiante.apellidos}"></td> 
+                    <td th:text="${#dates.format(estudiante.fechaNaci, 'yyyy-MM-dd')}"></td>
+                    <td>
+                        <div class="d-flex">
+                            <a th:href="@{/detalle_estudiante/{id}(id=${estudiante.dni})}" class="btn btn-info me-2">Ver</a>
+                            <a th:href="@{/editar_estudiante/{id}(id=${estudiante.dni})}" class="btn btn-warning">Editar</a>
+                            <a th:href="@{/delete/{id}(id=${estudiante.dni})}" class="btn btn-danger ms-2">Eliminar</a>
+                        </div> 
+                    </td> 
+                </tr> 
+            </tbody>  
+        </table> 
+    <script src="/js/bootstrap.bundle.min.js"></script> 
+</body> 
+</html> 
