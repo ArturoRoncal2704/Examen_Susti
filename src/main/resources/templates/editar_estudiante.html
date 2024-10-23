@@ -16,7 +16,7 @@
         </div>
         <div class="form-group">
             <label for="codAlumno">Código Alumno:</label>
-            <input type="text" th:field="*{codAlumno}" class="form-control" id="codAlumno">
+            <input type="text" th:field="*{codAlumno}" class="form-control" id="codAlumno" required maxlength="6" pattern="[A-Za-z0-9]{6}"/>
         </div>
         <div class="form-group">
             <label for="nombres">Nombres:</label>
