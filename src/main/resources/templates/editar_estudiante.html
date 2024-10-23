@@ -11,7 +11,7 @@
     <h2>Editar Estudiante</h2>
     <form th:action="@{/editar_estudiante/{id}(id=${estudiante.dni})}" th:object="${estudiante}" method="post">
         <div class="form-group">
-            <label for="dni">DNI:</label>
+            <label for="dni">DNI :</label>
             <input type="text" th:field="*{dni}" class="form-control" id="dni" readonly>
         </div>
         <div class="form-group">
